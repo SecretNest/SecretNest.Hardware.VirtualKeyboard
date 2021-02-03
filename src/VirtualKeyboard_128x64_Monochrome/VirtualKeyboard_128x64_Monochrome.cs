@@ -27,6 +27,8 @@ namespace SecretNest.Hardware.VirtualKeyboard
         private const int CharCountPerLine = 16;
         private const int PageLeadingLength = 4;
 
+        public Bitmap CharImage => _sourceBitmap;
+
         public VirtualKeyboard_128x64_Monochrome(Graphics screenGraphics) : base(screenGraphics)
         {
             using (MemoryStream bitmapData = new MemoryStream(Resources.Characters))

@@ -10,9 +10,10 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/SecretNest/SecretNest.Hardware.VirtualKeyboard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SecretNest/SecretNest.Hardware.VirtualKeyboard</RepositoryUrl>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <PackageReleaseNotes>Expose char image for sharing.</PackageReleaseNotes>
     <Description>Virtual keyboard working on small screen (128x64 monochrome) connected using serial port.</Description>
     <Copyright>Allen Cui / SecretNest.info</Copyright>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
