@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace SecretNest.Hardware.VirtualKeyboard
 {
-    class VirtualKeyboardHelper : IDisposable
+    public class VirtualKeyboardHelper : IDisposable
     {
         private readonly VirtualKeyboard _keyboard;
         private readonly AutoResetEvent _lock = new AutoResetEvent(false);

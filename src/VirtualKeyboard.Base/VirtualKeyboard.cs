@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SecretNest.Hardware.VirtualKeyboard
 {
-    abstract class VirtualKeyboard
+    public abstract class VirtualKeyboard
     {
         public event EventHandler<VirtualKeyboardResultEventArgs> VirtualKeyboardResult;
 
-        private protected void SetVirtualKeyboardResult(string text, bool isCancelled, bool raiseEvent)
+        protected void SetVirtualKeyboardResult(string text, bool isCancelled, bool raiseEvent)
         {
             Text = ReplaceEnterFromDisplay(text);
             IsCancelled = isCancelled;
@@ -42,16 +42,16 @@ namespace SecretNest.Hardware.VirtualKeyboard
         public bool ShowConfirm { get; set; }
         public bool IsCancelled { get; private set; }
         //public Bitmap Image { get; protected set; }
-        private protected Graphics Graphics { get; private set; }
+        protected Graphics Graphics { get; private set; }
 
-        private protected VirtualKeyboard(Graphics screenGraphics)
+        protected VirtualKeyboard(Graphics screenGraphics)
         {
             Graphics = screenGraphics;
         }
 
         public event EventHandler<ScreenChangedEventArgs> ScreenChanged;
 
-        private protected void OnScreenChanged(int startY, int endY)
+        protected void OnScreenChanged(int startY, int endY)
         {
             ScreenChanged?.Invoke(this, new ScreenChangedEventArgs(startY, endY));
         }
@@ -59,7 +59,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
         public void Start(string initialText, bool allowEnter) =>
             StartInternal(ReplaceEntersToDisplay(initialText), allowEnter);
 
-        private protected abstract void StartInternal(string initialText, bool allowEnter);
+        protected abstract void StartInternal(string initialText, bool allowEnter);
 
         public abstract string GetResult(bool raiseEvent);
 
@@ -80,7 +80,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
         public abstract void Press();
     }
 
-    class VirtualKeyboardResultEventArgs : EventArgs
+    public class VirtualKeyboardResultEventArgs : EventArgs
     {
         public VirtualKeyboardResultEventArgs(bool isCancelled, string text)
         {
@@ -92,7 +92,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
         public string Text { get; }
     }
 
-    class ScreenChangedEventArgs : EventArgs
+    public class ScreenChangedEventArgs : EventArgs
     {
         public ScreenChangedEventArgs(int startY, int endY)
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SecretNest.Hardware.VirtualKeyboard
 {
-    class VirtualKeyboardTextDisplayBar
+    public class VirtualKeyboardTextDisplayBar
     {
         //private readonly int _screenWidth;
         private readonly int _screenWidthMinusOne;

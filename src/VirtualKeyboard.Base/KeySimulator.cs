@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace SecretNest.Hardware.VirtualKeyboard
 {
-    class KeySimulator : IDisposable
+    public class KeySimulator : IDisposable
     {
         private readonly Timer _timer;
         private bool _disposedValue;
