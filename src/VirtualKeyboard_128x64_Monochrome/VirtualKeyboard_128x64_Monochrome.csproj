@@ -10,14 +10,14 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/SecretNest/SecretNest.Hardware.VirtualKeyboard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SecretNest/SecretNest.Hardware.VirtualKeyboard</RepositoryUrl>
-    <PackageReleaseNotes>Expose points of char image for sharing.</PackageReleaseNotes>
+    <PackageReleaseNotes>Update references.</PackageReleaseNotes>
     <Description>Virtual keyboard working on small screen (128x64 monochrome) connected using serial port.</Description>
     <Copyright>Allen Cui / SecretNest.info</Copyright>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SecretNest.Hardware.TextRenderer" Version="1.0.2" />
+    <PackageReference Include="SecretNest.Hardware.TextRenderer" Version="1.0.3" />
     <PackageReference Include="SecretNest.Hardware.VirtualKeyboard.Base" Version="1.0.2" />
   </ItemGroup>
 
