@@ -28,6 +28,9 @@ namespace SecretNest.Hardware.VirtualKeyboard
         private const int PageLeadingLength = 4;
 
         public Bitmap CharImage => _sourceBitmap;
+        public Size CharSize => _charSize;
+        public IReadOnlyDictionary<char, Point> WhiteCharsPoint => _whites;
+        public IReadOnlyDictionary<char, Point> BlackCharsPoint => _blacks;
 
         public VirtualKeyboard_128x64_Monochrome(Graphics screenGraphics) : base(screenGraphics)
         {
