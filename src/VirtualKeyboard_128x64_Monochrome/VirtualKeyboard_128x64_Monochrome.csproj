@@ -13,12 +13,12 @@
     <PackageReleaseNotes>Update references.</PackageReleaseNotes>
     <Description>Virtual keyboard working on small screen (128x64 monochrome) connected using serial port.</Description>
     <Copyright>Allen Cui / SecretNest.info</Copyright>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SecretNest.Hardware.TextRenderer" Version="1.0.3" />
-    <PackageReference Include="SecretNest.Hardware.VirtualKeyboard.Base" Version="1.0.2" />
+    <PackageReference Include="SecretNest.Hardware.TextRenderer" Version="1.0.4" />
+    <PackageReference Include="SecretNest.Hardware.VirtualKeyboard.Base" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>

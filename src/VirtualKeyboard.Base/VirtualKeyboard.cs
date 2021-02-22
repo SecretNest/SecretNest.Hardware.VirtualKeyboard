@@ -11,10 +11,11 @@ namespace SecretNest.Hardware.VirtualKeyboard
 
         protected void SetVirtualKeyboardResult(string text, bool isCancelled, bool raiseEvent)
         {
-            Text = ReplaceEnterFromDisplay(text);
+            if (text != null)
+                Text = ReplaceEnterFromDisplay(text);
             IsCancelled = isCancelled;
             if (raiseEvent)
-                VirtualKeyboardResult?.Invoke(this, new VirtualKeyboardResultEventArgs(isCancelled, text));
+                VirtualKeyboardResult?.Invoke(this, new VirtualKeyboardResultEventArgs(isCancelled, Text));
         }
 
         private string ReplaceEntersToDisplay(string text)
