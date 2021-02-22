@@ -623,12 +623,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
 
         #endregion
 
-        public override string GetResult(bool raiseEvent)
-        {
-            var text = _textDisplayBar.Text;
-            SetVirtualKeyboardResult(text, false, raiseEvent);
-            return text;
-        }
+        public override string CurrentEditingText => _textDisplayBar.Text;
 
         public override void Key1()
         {

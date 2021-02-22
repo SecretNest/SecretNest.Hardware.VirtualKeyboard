@@ -11,7 +11,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
 
         protected void SetVirtualKeyboardResult(string text, bool isCancelled, bool raiseEvent)
         {
-            if (text != null)
+            if (!isCancelled)
                 Text = ReplaceEnterFromDisplay(text);
             IsCancelled = isCancelled;
             if (raiseEvent)
@@ -57,12 +57,15 @@ namespace SecretNest.Hardware.VirtualKeyboard
             ScreenChanged?.Invoke(this, new ScreenChangedEventArgs(startY, endY));
         }
 
-        public void Start(string initialText, bool allowEnter) =>
-            StartInternal(ReplaceEntersToDisplay(initialText), allowEnter);
+        public void Start(string initialText, bool allowEnter)
+        {
+            Text = !string.IsNullOrEmpty(initialText) ? ReplaceEntersToDisplay(initialText) : "";
+            StartInternal(Text, allowEnter);
+        }
 
         protected abstract void StartInternal(string initialText, bool allowEnter);
 
-        public abstract string GetResult(bool raiseEvent);
+        public abstract string CurrentEditingText { get; } //Text from display, no matter cancelled or not.
 
         public abstract void Key1();
 
