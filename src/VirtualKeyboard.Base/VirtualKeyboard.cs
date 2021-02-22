@@ -60,6 +60,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
         public void Start(string initialText, bool allowEnter)
         {
             Text = !string.IsNullOrEmpty(initialText) ? ReplaceEntersToDisplay(initialText) : "";
+            IsCancelled = false;
             StartInternal(Text, allowEnter);
         }
 
