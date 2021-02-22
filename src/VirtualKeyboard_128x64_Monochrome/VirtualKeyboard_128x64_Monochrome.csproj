@@ -14,12 +14,12 @@
 Allow to get current editing text.</PackageReleaseNotes>
     <Description>Virtual keyboard working on small screen (128x64 monochrome) connected using serial port.</Description>
     <Copyright>Allen Cui / SecretNest.info</Copyright>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SecretNest.Hardware.TextRenderer" Version="1.0.4" />
-    <PackageReference Include="SecretNest.Hardware.VirtualKeyboard.Base" Version="1.0.5" />
+    <PackageReference Include="SecretNest.Hardware.VirtualKeyboard.Base" Version="1.0.6" />
   </ItemGroup>
 
   <ItemGroup>

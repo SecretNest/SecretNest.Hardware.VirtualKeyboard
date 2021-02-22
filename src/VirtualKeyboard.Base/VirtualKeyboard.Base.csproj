@@ -11,10 +11,11 @@
     <PackageProjectUrl>https://github.com/SecretNest/SecretNest.Hardware.VirtualKeyboard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SecretNest/SecretNest.Hardware.VirtualKeyboard</RepositoryUrl>
     <PackageReleaseNotes>Bug fix: Text, IsCancelled is not set when instance starting.
+Bug fix: Event handler is not removed after used in StartAndLock.
 Allow to get current editing text.</PackageReleaseNotes>
     <Description>The base class for virtual keyboard working on small screen connected using serial port.</Description>
     <Copyright>Allen Cui / SecretNest.info</Copyright>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
   </PropertyGroup>
 
   <ItemGroup>

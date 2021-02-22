@@ -8,7 +8,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
     public class VirtualKeyboardHelper : IDisposable
     {
         private readonly VirtualKeyboard _keyboard;
-        private readonly AutoResetEvent _lock = new AutoResetEvent(false);
+        private readonly ManualResetEvent _lock = new ManualResetEvent(false);
         private readonly KeySimulator _up, _down, _left, _right;
 
         public VirtualKeyboardHelper(VirtualKeyboard keyboard, int dueTime, int period)
@@ -28,7 +28,9 @@ namespace SecretNest.Hardware.VirtualKeyboard
         {
             _keyboard.Start(initialText, allowEnter);
             _keyboard.VirtualKeyboardResult += Keyboard_VirtualKeyboardResult;
+            _lock.Reset();
             _lock.WaitOne();
+            _keyboard.VirtualKeyboardResult -= Keyboard_VirtualKeyboardResult;
         }
 
         private void Keyboard_VirtualKeyboardResult(object sender, VirtualKeyboardResultEventArgs e)
