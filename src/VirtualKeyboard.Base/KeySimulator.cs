@@ -58,37 +58,37 @@ namespace SecretNest.Hardware.VirtualKeyboard
         }
     }
 
-    class KeySimulator<T> : KeySimulator
-    {
-        private readonly T _state;
+    //class KeySimulator<T> : KeySimulator
+    //{
+    //    private readonly T _state;
 
-        public KeySimulator(T state, int dueTime, int period) : base(dueTime, period)
-        {
-            _state = state;
-        }
+    //    public KeySimulator(T state, int dueTime, int period) : base(dueTime, period)
+    //    {
+    //        _state = state;
+    //    }
 
-        public override void Start()
-        {
-            Timer(_state);
-            base.Start();
-        }
+    //    public override void Start()
+    //    {
+    //        Timer(_state);
+    //        base.Start();
+    //    }
 
-        private protected override void Timer(object state)
-        {
-            KeyPressedWithState?.Invoke(this, new KeyPressedEventArgs<T>((T) _state));
-        }
+    //    private protected override void Timer(object state)
+    //    {
+    //        KeyPressedWithState?.Invoke(this, new KeyPressedEventArgs<T>((T) _state));
+    //    }
 
-        public event EventHandler<KeyPressedEventArgs<T>> KeyPressedWithState;
+    //    public event EventHandler<KeyPressedEventArgs<T>> KeyPressedWithState;
 
-    }
+    //}
 
-    class KeyPressedEventArgs<T> : EventArgs
-    {
-        public T State { get; }
+    //class KeyPressedEventArgs<T> : EventArgs
+    //{
+    //    public T State { get; }
 
-        public KeyPressedEventArgs(T state)
-        {
-            State = state;
-        }
-    }
+    //    public KeyPressedEventArgs(T state)
+    //    {
+    //        State = state;
+    //    }
+    //}
 }
