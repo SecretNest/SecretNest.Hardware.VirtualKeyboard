@@ -12,7 +12,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
     public class VirtualKeyboard_128x64_Monochrome : VirtualKeyboard, IDisposable
     {
         private readonly VirtualKeyboardTextDisplayBar _textDisplayBar;
-        private bool _textDisplayBarHasControl = false;
+        private bool _textDisplayBarHasControl;
         private readonly TextRenderer _textRenderer;
         private readonly Bitmap _sourceBitmap;
         private readonly Dictionary<char, Point> _whites;
@@ -403,6 +403,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
             _initialText = initialText;
             _allowEnter = allowEnter;
             _confirmMode = false;
+            _textDisplayBarHasControl = false;
 
             //Help
             if (ShowHelp)
