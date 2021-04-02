@@ -91,6 +91,8 @@ namespace SecretNest.Hardware.VirtualKeyboard
                 {'%', new Point(96, 24)},
                 {'#', new Point(104, 24)},
                 {'&', new Point(112, 24)},
+                {'\n', new Point(120, 24)},
+
 
                 {'?', new Point(0, 36)},
                 {'!', new Point(8, 36)},
@@ -198,6 +200,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
                 {'%', new Point(96, 96)},
                 {'#', new Point(104, 96)},
                 {'&', new Point(112, 96)},
+                {'\n', new Point(120, 24)},
 
                 {'?', new Point(0, 108)},
                 {'!', new Point(8, 108)},
@@ -542,20 +545,6 @@ namespace SecretNest.Hardware.VirtualKeyboard
             _helpMode = false;
             Graphics.Clear(Color.White);
 
-            //Text bar
-            if (_allowEnter)
-            {
-                _whites['\n'] = new Point(120, 24);
-                _blacks['\n'] = new Point(120, 96);
-                _keyboard1[2][15] = '\n';
-            }
-            else
-            {
-                _whites['\n'] = new Point(120, 0); //space
-                _blacks['\n'] = new Point(120, 72); //space
-                _keyboard1[2][15] = ' ';
-            }
-            
             _suppressOnScreenChanged = true;
             _textDisplayBar.Text = _initialText;
             _suppressOnScreenChanged = false;
@@ -751,7 +740,8 @@ namespace SecretNest.Hardware.VirtualKeyboard
             if (_textDisplayBarHasControl) return;
 
             var selectedKey = (_keyboard1Selected ? _keyboard1 : _keyboard2)[_keyboardY][_keyboardX];
-            _textDisplayBar.EnterKey(selectedKey);
+            if (_allowEnter || selectedKey != '\n')
+                _textDisplayBar.EnterKey(selectedKey);
         }
 
         public void Dispose()
