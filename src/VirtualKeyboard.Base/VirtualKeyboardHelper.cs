@@ -10,18 +10,20 @@ namespace SecretNest.Hardware.VirtualKeyboard
         private readonly VirtualKeyboard _keyboard;
         private readonly ManualResetEvent _lock = new ManualResetEvent(false);
         private readonly KeySimulator _up, _down, _left, _right;
+        private object _syncLock;
 
-        public VirtualKeyboardHelper(VirtualKeyboard keyboard, int dueTime, int period)
+        public VirtualKeyboardHelper(VirtualKeyboard keyboard, int dueTime, int period, object syncLock = null)
         {
             _keyboard = keyboard;
+            _syncLock = syncLock ?? new object();
             _up = new KeySimulator(dueTime, period);
             _down = new KeySimulator(dueTime, period);
             _left = new KeySimulator(dueTime, period);
             _right = new KeySimulator(dueTime, period);
-            _up.KeyPressed += new EventHandler((sender, e) => keyboard.Up());
-            _down.KeyPressed += new EventHandler((sender, e) => keyboard.Down());
-            _left.KeyPressed += new EventHandler((sender, e) => keyboard.Left());
-            _right.KeyPressed += new EventHandler((sender, e) => keyboard.Right());
+            _up.KeyPressed += SendUp;
+            _down.KeyPressed += SendDown;
+            _left.KeyPressed += SendLeft;
+            _right.KeyPressed += SendRight;
         }
 
         public void StartAndBlock(string initialText, bool allowEnter)
@@ -31,6 +33,38 @@ namespace SecretNest.Hardware.VirtualKeyboard
             _lock.Reset();
             _lock.WaitOne();
             _keyboard.VirtualKeyboardResult -= Keyboard_VirtualKeyboardResult;
+        }
+
+        private void SendUp(object sender, EventArgs e)
+        {
+            lock (_syncLock)
+            {
+                _keyboard.Up();
+            }
+        }
+
+        private void SendDown(object sender, EventArgs e)
+        {
+            lock (_syncLock)
+            {
+                _keyboard.Down();
+            }
+        }
+
+        private void SendLeft(object sender, EventArgs e)
+        {
+            lock (_syncLock)
+            {
+                _keyboard.Left();
+            }
+        }
+
+        private void SendRight(object sender, EventArgs e)
+        {
+            lock (_syncLock)
+            {
+                _keyboard.Up();
+            }
         }
 
         private void Keyboard_VirtualKeyboardResult(object sender, VirtualKeyboardResultEventArgs e)
@@ -91,6 +125,10 @@ namespace SecretNest.Hardware.VirtualKeyboard
             {
                 if (disposing)
                 {
+                    _up.KeyPressed -= SendUp;
+                    _down.KeyPressed -= SendDown;
+                    _left.KeyPressed -= SendLeft;
+                    _right.KeyPressed -= SendRight;
                     _lock.Set();
                     _lock.Dispose();
                     _up.Dispose();
@@ -99,6 +137,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
                     _right.Dispose();
                 }
 
+                _syncLock = null;
                 _disposedValue = true;
             }
         }
