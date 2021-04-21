@@ -63,7 +63,7 @@ namespace SecretNest.Hardware.VirtualKeyboard
         {
             lock (_syncLock)
             {
-                _keyboard.Up();
+                _keyboard.Right();
             }
         }
 
